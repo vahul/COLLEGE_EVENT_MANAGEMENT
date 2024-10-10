@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Table</title>
+</head>
+<body>
+    <h1>Table</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>event Name</th>
+                <th>Lecturer Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for class in classes %}
+            <tr>
+                <td>{{ class.name }}</td>
+                <td>{{ class.lecturer.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

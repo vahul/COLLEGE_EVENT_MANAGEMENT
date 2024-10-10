@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Management -ADMIN Login</title>
+</head>
+<body style="background-color: indigo; color: white;">
+    <h1>Login</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="admin name"><br><br>
+        <input type="password" name="password" placeholder="admin password"><br><br>
+        <input type="submit" value="Login">
+    </form

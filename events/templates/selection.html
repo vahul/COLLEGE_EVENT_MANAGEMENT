@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selection Page</title>
+</head>
+<body>
+    <h1>Selection Page</h1>
+    <form method="POST" action="{% url 'add_selected_item' %}">
+        {% csrf_token %}
+        <select name="item">
+            {% for item in items %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ONLINE ART GALLERY</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', monospace;
+            color: ghostwhite;
+            background-color: #1A2930;
+        }
+
+        .header {
+            background-color: rgba(255, 255, 255,0.3);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+
+        }
+
+        h1 {
+            color: white;
+            font-size: 48px;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .box {
+            position: absolute;
+            width: 50%;
+            background-color: rgba(26, 41, 48, 0.5);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .box p {
+            color: white;
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .box h2 {
+            color: white;
+            margin: 0;
+            padding-bottom: 10px;
+        }
+
+        .box-1 {
+            top: 20px;
+            left: 47%;
+        }
+
+        .box-2 {
+            top: 200px;
+            right: 47%;
+        }
+
+        .box-3 {
+            top: 450px;
+            left: 47%;
+        }
+
+        .image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-image:  url('/static/event11.jpg');
+            background-size: 100% 100%;
+            opacity: 0.8;
+
+        }.semibox {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #FFFFFF;
+            padding: 20px;
+            width: 50%;
+            margin: 0 auto;
+            margin-top: 50px;
+            z-index:3;
+        }
+
+        .second-image-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-image: url('/static/event12.jpg');
+            background-size: 100% 100%;
+            opacity: 0.8;
+        }
+        .box-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+        }
+
+        .box-content {
+            position: relative;
+            z-index: 1;
+            width: 50%;
+            padding: 20px;
+        }
+
+        .box-content h2 {
+            color: ghostwhite;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .box-content p {
+            color: ghostwhite;
+            margin: 0;
+        }
+
+        .image1 {
+            background-image: url('event1.jpg');
+        }
+
+        .image2 {
+            background-image: url('event1.jpg');
+        }
+
+        .image3 {
+            background-image: url('event1.jpg');
+        }
+
+
+        .footer {
+            background-color: #FDD835;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 3;
+        }
+
+        .footer p {
+            margin: 0;
+            color: #1A2930;
+            font-size: 14px;
+        }
+
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .navbar li {
+            float: left;
+        }
+        .ng{
+        float:right;
+        }
+
+        .navbar li a {
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display:block;
+            cursor:wait;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: relative;
+            background-color: #f9f9f9;
+            min-width: 100%;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .menu-icon {
+            cursor: wait;
+            color: #fba9a9;
+            font-size: 20px;
+            padding: 15px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar li:not(:first-child) {
+                display: none;
+            }
+            .navbar li.icon {
+                float: left;
+                display: block;
+            }
+            .navbar.responsive .menu-icon {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+            .navbar.responsive li {
+                float: none;
+                display: block;
+                text-align: center;
+            }
+            .navbar.responsive .dropdown {
+                display: inline-block;
+            }
+            .dropdown-content {
+                position: relative;
+            }
+            .dropdown-content a {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>UNIVERSITY Event Management webssite</h1>
+
+      <div class="navbar" id="myNavbar">
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li class="dropdown">
+                <span class="menu-icon" onclick="toggleDropdown()">ARTIST DETAILS&#9776;</span>
+                <div class="dropdown-content"><<font color="#99775C">
+                   <a href="{% url 'user_form' %}"><font color="#99775C">enter details</font></a>
+                   <a href="{% url 'profile' %}"><font color="#99775C">artist profile</font></a>
+                </font>
+                </div>
+            </li>
+            <li class="dropdown">
+                <span onclick="toggleDropdown()">EXPO DETAILS&#9776;</span>
+                <div class="dropdown-content"><<font color="#99775C">
+                   <a href="{% url 'register_event' %}"><font color="#99775C">register for event</font></a>
+                   <a href="{% url 'display_events' %}"><font color="#99775C">view events which are in the list</font></a>
+                </font>
+                </div>
+
+            </li>
+            <div class="ng"><li><a href="{% url 'login' %}">logout</a></li></div>
+            <div class="ng">
+             </div>
+
+        </ul>
+
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            var dropdownContent = document.querySelector('.dropdown-content');
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+<div class="semibox">
+        <h1>ARTIST DETAILS</h1>
+        <p><strong>NAME::</strong> {{ request.user.username }}</p>
+        <p><strong>Gender:</strong> {{ us.gender }}</p>
+        <p><strong>Age:</strong> {{ us.age }}</p>
+        <p><strong>Branch:</strong> {{ us.branch }}</p>
+        <p><strong>Year:</strong> {{ us.year }}</p>
+        <p><strong>Section:</strong> {{ us.section }}</p>
+        <p><strong>University:</strong> {{ us.university }}</p>
+<!-- Add other user details here -->
+</div>
+</div>
+
+
+    <div class="image-container"></div>
+    <div class="image-container"></div>
+    <div class="content">
+        <div class="box box-1" >
+            <h2>About Us</h2>
+            <p>The university event management website offers event creation, participant registration, lecture scheduling, venue details, and admin controls for seamless event organization within the university.</p>
+        </div>
+
+        <div class="box box-2">
+            <h2>Our Services</h2>
+            <p>The university event management website provides services such as event creation and management, participant registration, lecture scheduling, venue information, and admin privileges for adding, deleting events, and managing participants. It serves as a centralized platform for efficient event organization within the university.</p>
+        </div>
+        </div>
+
+
+        <div class="content">
+            <div class="box box-3">
+                <h2>New Box</h2>
+                <p>This is a new sentence in the new box.</p>
+            </div>
+        </div>
+
+        <div class="second-image-container"></div>
+
+        </body>
+        </html>
